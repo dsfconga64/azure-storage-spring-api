@@ -38,8 +38,8 @@ public class AzureBlobAdapter {
     }
 	
     
-    public CloudBlobContainer testBlobContainer() throws URISyntaxException, StorageException, InvalidKeyException {
-        return cloudBlobClient().getContainerReference(env.getProperty("azure.storage.container-name"));
+    public CloudBlobContainer testBlobContainer(String containerName) throws URISyntaxException, StorageException, InvalidKeyException {
+        return cloudBlobClient().getContainerReference(containerName);
     }
 	
 	public boolean createContainer(String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
@@ -70,10 +70,10 @@ public class AzureBlobAdapter {
         return containerCreated;
     }
 	
-	public URI upload(MultipartFile multipartFile) throws InvalidKeyException, URISyntaxException, StorageException {
+	public URI upload(String containerName,MultipartFile multipartFile) throws InvalidKeyException, URISyntaxException, StorageException {
 		URI uri = null;
         CloudBlockBlob blob = null;
-        CloudBlobContainer cloudBlobContainer = this.testBlobContainer();
+        CloudBlobContainer cloudBlobContainer = this.testBlobContainer(containerName);
         try {
             blob = cloudBlobContainer.getBlockBlobReference(multipartFile.getOriginalFilename());
             blob.upload(multipartFile.getInputStream(), -1);
