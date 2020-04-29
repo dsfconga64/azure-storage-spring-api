@@ -3,3 +3,5 @@ azure:
     connectionstring: DefaultEndpointsProtocol=https;AccountName=storageaccountcosmo8672;AccountKey=Rg0nz7Dt3NNEqq+Y791kX8YGmvQorRBIsNtPYty75B+lCCTgKRsPbf3zTMkp/r+m6SudQ7JqKLLvQ2nY+nQkBQ==;EndpointSuffix=core.windows.net
     container-name: testcont
     enable-https: true
+server:
+  port: 8282
