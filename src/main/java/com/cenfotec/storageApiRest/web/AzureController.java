@@ -33,7 +33,7 @@ public class AzureController {
     }
 
     @PostMapping("/blob")
-    public ResponseEntity upload(@RequestParam MultipartFile multipartFile,@RequestParam String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
+    public ResponseEntity upload(@RequestParam  ("multipartFile")  MultipartFile multipartFile,@RequestParam  ("containerName")String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
         URI url = azureBlobAdapter.upload(containerName,multipartFile);
         return ResponseEntity.ok(url);
     }
