@@ -50,6 +50,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>storage-api-restApi</finalName>
+		<finalName>storage-api-restapi</finalName>
 	</build>
 </project>
