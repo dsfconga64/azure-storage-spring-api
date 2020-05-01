@@ -31,6 +31,12 @@ public class AzureController {
         boolean created = azureBlobAdapter.createContainer(containerName);
         return ResponseEntity.ok(created);
     }
+    
+    @PostMapping("/blobs")
+    public ResponseEntity getAllBlobsUser(@RequestBody String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
+    	List uris = azureBlobAdapter.listBlobs(containerName);
+        return ResponseEntity.ok(uris);
+    }
 
     @PostMapping("/blob")
     public ResponseEntity upload(@RequestParam  ("multipartFile")  MultipartFile multipartFile,@RequestParam  ("containerName")String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
@@ -39,7 +45,7 @@ public class AzureController {
     }
 
     @GetMapping("/blobs")
-    public ResponseEntity getAllBlobs(@RequestParam String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
+    public ResponseEntity getAllBlobs(@RequestParam (required=false,name="containerName")String containerName) throws InvalidKeyException, URISyntaxException, StorageException{
         List uris = azureBlobAdapter.listBlobs(containerName);
         return ResponseEntity.ok(uris);
     }
